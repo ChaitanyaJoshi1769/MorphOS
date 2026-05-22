@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent-orchestrator
+  namespace: morphos
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: agent-orchestrator
+  template:
+    metadata:
+      labels:
+        app: agent-orchestrator
+    spec:
+      containers:
+      - name: agent-orchestrator
+        image: morphos/agent-orchestrator:latest
+        ports:
+        - containerPort: 3003
+        env:
+        - name: PORT
+          value: "3003"
+        - name: NODE_ENV
+          value: "production"
+        - name: MUTATION_SERVICE_URL
+          value: "http://mutation-service:3002"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3003
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3003
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agent-orchestrator
+  namespace: morphos
+spec:
+  selector:
+    app: agent-orchestrator
+  ports:
+  - protocol: TCP
+    port: 3003
+    targetPort: 3003
+  type: ClusterIP

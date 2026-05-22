@@ -1,0 +1,34 @@
+# Build stage
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+COPY package.json pnpm-lock.yaml ./
+COPY turbo.json ./
+COPY tsconfig.base.json ./
+
+COPY packages ./packages
+COPY apps ./apps
+
+RUN npm install -g pnpm && pnpm install --frozen-lockfile
+
+ARG SERVICE_NAME
+RUN pnpm build --filter=$SERVICE_NAME
+
+# Runtime stage
+FROM node:20-alpine
+
+WORKDIR /app
+
+ARG SERVICE_NAME
+ARG SERVICE_PORT
+
+COPY --from=builder /app/apps/$SERVICE_NAME/dist ./dist
+COPY --from=builder /app/apps/$SERVICE_NAME/node_modules ./node_modules
+COPY apps/$SERVICE_NAME/package.json ./
+
+EXPOSE $SERVICE_PORT
+
+ENV NODE_ENV=production
+
+CMD ["node", "dist/index.js"]
