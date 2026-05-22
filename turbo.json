@@ -1,0 +1,63 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "**/.env",
+    "**/.env.local"
+  ],
+  "globalEnv": [
+    "NODE_ENV"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "build/**"
+      ],
+      "cacheKey": "build"
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "outputs": [
+        "coverage/**"
+      ],
+      "cache": false
+    },
+    "test:coverage": {
+      "outputs": [
+        "coverage/**"
+      ],
+      "cache": false
+    },
+    "lint": {
+      "outputs": [
+        "dist/**"
+      ],
+      "cacheKey": "lint"
+    },
+    "format": {
+      "outputs": [
+        "dist/**"
+      ],
+      "cache": false
+    },
+    "type-check": {
+      "outputs": [
+        "dist/**"
+      ],
+      "cacheKey": "type-check"
+    },
+    "generate": {
+      "outputs": [
+        "generated/**"
+      ],
+      "cacheKey": "generate"
+    }
+  }
+}
