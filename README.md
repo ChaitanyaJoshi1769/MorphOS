@@ -1,2 +1,2 @@
 # MorphOS
-I-Native Adaptive Software Platform
+AI-Native Adaptive Software Platform
