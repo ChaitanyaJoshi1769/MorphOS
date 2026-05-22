@@ -1,0 +1,31 @@
+{
+  "name": "@morphos/mutation-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
+    "./ast": {
+      "import": "./src/ast/index.ts",
+      "types": "./src/ast/index.ts"
+    },
+    "./codegen": {
+      "import": "./src/codegen/index.ts",
+      "types": "./src/codegen/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "@morphos/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.2"
+  }
+}
