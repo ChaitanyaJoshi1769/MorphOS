@@ -1,0 +1,24 @@
+{
+  "name": "@morphos/demo-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "@morphos/shared": "workspace:*",
+    "@morphos/adaptive-runtime": "workspace:*",
+    "@morphos/primitive-sdk": "workspace:*",
+    "@morphos/agent-core": "workspace:*",
+    "@morphos/personalization-engine": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.2",
+    "tsx": "^4.0.0"
+  }
+}
