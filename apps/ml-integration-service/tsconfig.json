@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "paths": {
+      "@morphos/shared": ["../../packages/shared/src"],
+      "@morphos/predictive-mutations": ["../../packages/predictive-mutations/src"],
+      "@morphos/anomaly-detector": ["../../packages/anomaly-detector/src"],
+      "@morphos/plugin-system": ["../../packages/plugin-system/src"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
