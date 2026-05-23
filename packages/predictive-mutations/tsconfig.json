@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "paths": {
+      "@morphos/shared": ["../shared/src"],
+      "@morphos/mutation-core": ["../mutation-core/src"],
+      "@morphos/adaptive-runtime": ["../adaptive-runtime/src"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "tests"]
+}
